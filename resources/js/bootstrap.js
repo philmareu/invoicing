@@ -13,6 +13,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 import Vue from 'vue'
 
 Vue.component('home', require('./components/Home.vue').default);
+Vue.component('install', require('./components/Install.vue').default);
 
 const app = new Vue({
     el: '#app',

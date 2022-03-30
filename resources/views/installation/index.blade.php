@@ -7,6 +7,6 @@
 @section('content')
     @parent
 
-    <home></home>
+    <install></install>
 
 @endsection
