@@ -17,4 +17,12 @@ class RoleFactory extends Factory
             //
         ];
     }
+
+    public function owner()
+    {
+        return $this->state(fn ($attributes) => [
+            'slug' => 'owner',
+            'role' => 'Owner'
+        ]);
+    }
 }
