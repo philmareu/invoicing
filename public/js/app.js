@@ -2119,7 +2119,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Install"
+  name: "Install",
+  data: function data() {
+    return {
+      name: null,
+      email: null,
+      password: null
+    };
+  },
+  methods: {
+    install: function install() {
+      axios.post('api/installations', {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      }).then(function (response) {
+        window.location = '/home';
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -19786,71 +19804,121 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-8" }, [
-      _c("div", { staticClass: "mx-auto sm:max-w-sm" }, [
-        _c("h1", { staticClass: "text-3xl mb-3" }, [_vm._v("Install")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "p-8 rounded-sm bg-orange-100" }, [
-          _c("form", [
-            _c("div", { staticClass: "mb-3" }, [
-              _c(
-                "label",
-                { staticClass: "block mb-2", attrs: { for: "name" } },
-                [_vm._v("Name")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "block w-full",
-                attrs: { type: "text", name: "name", id: "name" },
-              }),
+  return _c("div", { staticClass: "p-8" }, [
+    _c("div", { staticClass: "mx-auto sm:max-w-sm" }, [
+      _c("h1", { staticClass: "text-3xl mb-3" }, [_vm._v("Install")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "p-8 rounded-sm bg-orange-100" }, [
+        _c("form", [
+          _c("div", { staticClass: "mb-3" }, [
+            _c("label", { staticClass: "block mb-2", attrs: { for: "name" } }, [
+              _vm._v("Name"),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "mb-3" }, [
-              _c(
-                "label",
-                { staticClass: "block mb-2", attrs: { for: "email" } },
-                [_vm._v("Email")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "block w-full",
-                attrs: { type: "email", name: "email", id: "email" },
-              }),
-            ]),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.name,
+                  expression: "name",
+                },
+              ],
+              staticClass: "block w-full",
+              attrs: { type: "text", name: "name", id: "name" },
+              domProps: { value: _vm.name },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.name = $event.target.value
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mb-3" }, [
+            _c(
+              "label",
+              { staticClass: "block mb-2", attrs: { for: "email" } },
+              [_vm._v("Email")]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "mb-3" }, [
-              _c(
-                "label",
-                { staticClass: "block mb-2", attrs: { for: "password" } },
-                [_vm._v("Password")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "block w-full",
-                attrs: { type: "password", name: "password", id: "password" },
-              }),
-            ]),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.email,
+                  expression: "email",
+                },
+              ],
+              staticClass: "block w-full",
+              attrs: { type: "email", name: "email", id: "email" },
+              domProps: { value: _vm.email },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mb-3" }, [
+            _c(
+              "label",
+              { staticClass: "block mb-2", attrs: { for: "password" } },
+              [_vm._v("Password")]
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "mb-3" }, [
-              _c(
-                "button",
-                { staticClass: "p-2 bg-orange-400", attrs: { type: "button" } },
-                [_vm._v("Install")]
-              ),
-            ]),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.password,
+                  expression: "password",
+                },
+              ],
+              staticClass: "block w-full",
+              attrs: { type: "password", name: "password", id: "password" },
+              domProps: { value: _vm.password },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.password = $event.target.value
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mb-3" }, [
+            _c(
+              "button",
+              {
+                staticClass: "p-2 bg-orange-400",
+                attrs: { type: "button" },
+                on: {
+                  click: function ($event) {
+                    return _vm.install()
+                  },
+                },
+              },
+              [_vm._v("Install")]
+            ),
           ]),
         ]),
       ]),
-    ])
-  },
-]
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
