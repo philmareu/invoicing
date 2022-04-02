@@ -51,7 +51,7 @@ export default {
                     password: this.password
                 })
             .then(response => {
-                window.location = '/home'
+                window.location = '/'
             })
         }
     },
