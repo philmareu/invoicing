@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreInstallationsRequest extends FormRequest
@@ -13,7 +14,8 @@ class StoreInstallationsRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return !User::whereRelation('role', 'slug', 'owner')
+            ->first();
     }
 
     /**
@@ -24,6 +26,7 @@ class StoreInstallationsRequest extends FormRequest
     public function rules()
     {
         return [
+            'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:6'
         ];

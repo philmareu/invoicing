@@ -43,7 +43,12 @@ class PostInstallationsTest extends TestCase
             ->create();
 
         $this->postJson(
-            route('api.installations.store')
+            route('api.installations.store'),
+            [
+                'name' => 'Bob',
+                'email' => 'bob@bob.com',
+                'password' => 'spacesuit'
+            ]
         )
             ->assertStatus(403);
     }

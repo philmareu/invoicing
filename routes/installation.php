@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\RedirectIfInstalled;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get(
     'install',
     [\App\Http\Controllers\InstallationController::class, 'install']
-)->name('install');
+)
+    ->name('install')
+    ->middleware(RedirectIfInstalled::class);
+
+Route::post(
+    'installations',
+    [
+        \App\Http\Controllers\Endpoints\InstallationsController::class,
+        'store'
+    ]
+)
+    ->name('api.installations.store')
+    ->prefix('api');
