@@ -14,7 +14,8 @@ class RoleFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'slug' => $this->faker->word,
+            'role' => $this->faker->word
         ];
     }
 
