@@ -22,7 +22,6 @@ class CreateCustomersTest extends TestCase
     public function testValidation()
     {
         $user = User::factory()
-            ->forRole()
             ->create();
 
         collect($this->validations)

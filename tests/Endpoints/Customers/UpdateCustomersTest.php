@@ -22,7 +22,6 @@ class UpdateCustomersTest extends TestCase
     public function testValidation()
     {
         $user = User::factory()
-            ->forRole()
             ->create();
 
         $customer = Customer::factory()
