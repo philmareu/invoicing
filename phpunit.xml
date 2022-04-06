@@ -11,6 +11,9 @@
         <testsuite name="Endpoints">
             <directory suffix="Test.php">./tests/Endpoints</directory>
         </testsuite>
+        <testsuite name="Auth">
+            <directory suffix="Test.php">./tests/Auth</directory>
+        </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>
