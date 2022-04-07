@@ -21,7 +21,7 @@ abstract class ResourceTestCase extends TestCase
     protected $methodMap = [
         'index' => 'GET',
         'show' => 'GET',
-        'create' => 'POST',
+        'store' => 'POST',
         'update' => 'PUT',
         'delete' => 'DELETE'
     ];
