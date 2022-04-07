@@ -18,9 +18,12 @@ abstract class ResourceTestCase extends TestCase
 
     protected $method;
 
+    protected $validations;
+
     public function testGuestsNotAllowed()
     {
-        $this->getJson(
+        $this->json(
+            $this->getMethod(),
             $this->getUri(
                 in_array($this->getMethod(), ['destroy', 'update', 'show'])
                     ? 1
@@ -52,6 +55,15 @@ abstract class ResourceTestCase extends TestCase
     {
         return $this->getResourceModel()::factory()
             ->create();
+    }
+
+    public function getGenericUri()
+    {
+        return $this->getUri(
+            in_array($this->getMethod(), ['destroy', 'update', 'show'])
+                ? $this->createResource()->id
+                : null
+        );
     }
 
     public function getUri($routeParameters = null)
