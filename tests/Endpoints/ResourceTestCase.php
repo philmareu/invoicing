@@ -23,7 +23,7 @@ abstract class ResourceTestCase extends TestCase
         'show' => 'GET',
         'store' => 'POST',
         'update' => 'PUT',
-        'delete' => 'DELETE'
+        'destroy' => 'DELETE'
     ];
 
     protected $validations;
