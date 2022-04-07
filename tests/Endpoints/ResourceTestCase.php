@@ -16,7 +16,15 @@ abstract class ResourceTestCase extends TestCase
 
     protected $resource;
 
-    protected $method;
+    protected $action;
+
+    protected $methodMap = [
+        'index' => 'GET',
+        'show' => 'GET',
+        'create' => 'POST',
+        'update' => 'PUT',
+        'delete' => 'DELETE'
+    ];
 
     protected $validations;
 
@@ -25,7 +33,7 @@ abstract class ResourceTestCase extends TestCase
         $this->json(
             $this->getMethod(),
             $this->getUri(
-                in_array($this->getMethod(), ['destroy', 'update', 'show'])
+                in_array($this->getAction(), ['destroy', 'update', 'show'])
                     ? 1
                     : null
             )
@@ -35,11 +43,18 @@ abstract class ResourceTestCase extends TestCase
 
     public function getMethod()
     {
-        if ($this->method) {
-            return $this->method;
+        return $this->methodMap[
+            $this->getAction()
+        ];
+    }
+
+    public function getAction()
+    {
+        if ($this->action) {
+            return $this->action;
         }
 
-        return $this->method = $this->parsedClassName()['method'];
+        return $this->action = $this->parsedClassName()['action'];
     }
 
     public function getResource()
@@ -60,7 +75,7 @@ abstract class ResourceTestCase extends TestCase
     public function getGenericUri()
     {
         return $this->getUri(
-            in_array($this->getMethod(), ['destroy', 'update', 'show'])
+            in_array($this->getAction(), ['destroy', 'update', 'show'])
                 ? $this->createResource()->id
                 : null
         );
@@ -73,7 +88,7 @@ abstract class ResourceTestCase extends TestCase
                 '%s.%s.%s',
                 $this->prefix,
                 $this->getResource(),
-                $this->getMethod()
+                $this->getAction()
             ),
             $routeParameters
         );
@@ -98,13 +113,13 @@ abstract class ResourceTestCase extends TestCase
 
     private function parsedClassName()
     {
-        list($method, $resource) = explode(
+        list($action, $resource) = explode(
             '_',
             Str::snake($this->getClassName())
         );
 
         return [
-            'method' => $method,
+            'action' => $action,
             'resource' => $resource
         ];
     }
