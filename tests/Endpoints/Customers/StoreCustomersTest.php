@@ -2,34 +2,21 @@
 
 namespace Tests\Feature\Endpoints\Customers;
 
-use App\Models\User;
+use Tests\Endpoints\HasValidations;
 use Tests\Endpoints\ResourceTestCase;
 
 class StoreCustomersTest extends ResourceTestCase
 {
-    protected $validations = [
-        [
-            'payload' => [],
-            'errors' => ['name']
-        ]
-    ];
+    use HasValidations;
 
-    public function testValidation()
+    public function getValidations(): array
     {
-        $user = User::factory()
-            ->create();
-
-        collect($this->validations)
-            ->each(function ($validation) use ($user) {
-
-                $this
-                    ->actingAs($user)
-                    ->postJson(
-                    route('api.customers.store'),
-                    $validation['payload']
-                )
-                    ->assertJsonValidationErrors($validation['errors']);
-            });
+        return [
+            [
+                'payload' => [],
+                'errors' => ['name']
+            ]
+        ];
     }
 
     public function testCreatesCustomer()

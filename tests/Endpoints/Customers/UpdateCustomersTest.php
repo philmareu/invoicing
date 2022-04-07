@@ -3,38 +3,21 @@
 namespace Tests\Feature\Endpoints\Customers;
 
 use App\Models\Customer;
-use App\Models\User;
+use Tests\Endpoints\HasValidations;
 use Tests\Endpoints\ResourceTestCase;
 
 class UpdateCustomersTest extends ResourceTestCase
 {
-    protected $validations = [
-        [
-            'payload' => [],
-            'errors' => ['name']
-        ]
-    ];
+    use HasValidations;
 
-    public function testValidation()
+    public function getValidations(): array
     {
-        $user = User::factory()
-            ->create();
-
-        $customer = Customer::factory()
-            ->create();
-
-        collect($this->validations)
-            ->each(function ($validation) use ($user, $customer) {
-
-                $this
-                    ->actingAs($user)
-                    ->putJson(
-                        route('api.customers.update', $customer->id),
-                        $validation['payload']
-                    )
-                    ->assertStatus(422)
-                    ->assertJsonValidationErrors($validation['errors']);
-            });
+        return [
+            [
+                'payload' => [],
+                'errors' => ['name']
+            ]
+        ];
     }
 
     public function testUpdatesCustomer()

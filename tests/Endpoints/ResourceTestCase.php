@@ -26,8 +26,6 @@ abstract class ResourceTestCase extends TestCase
         'destroy' => 'DELETE'
     ];
 
-    protected $validations;
-
     public function testGuestsNotAllowed()
     {
         $this->json(
