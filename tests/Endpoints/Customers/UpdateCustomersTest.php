@@ -4,14 +4,10 @@ namespace Tests\Feature\Endpoints\Customers;
 
 use App\Models\Customer;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use Tests\Endpoints\ResourceTestCase;
 
-class UpdateCustomersTest extends TestCase
+class UpdateCustomersTest extends ResourceTestCase
 {
-    use RefreshDatabase;
-
     protected $validations = [
         [
             'payload' => [],
@@ -41,29 +37,17 @@ class UpdateCustomersTest extends TestCase
             });
     }
 
-    public function testGuestsNotAllowed()
-    {
-        $this->putJson(
-            route('api.customers.update', 1)
-        )
-            ->assertStatus(401);
-    }
-
     public function testUpdatesCustomer()
     {
-        $user = User::factory()
-            ->forRole()
-            ->create();
-
         $customer = Customer::factory()
             ->create([
                 'name' => 'Harvest Co.'
             ]);
 
         $this
-            ->actingAs($user)
+            ->callAuthenticated()
             ->putJson(
-                route('api.customers.update', $customer->id),
+                $this->getUri($customer),
                 [
                     'name' => 'Acme, Co.'
                 ]

@@ -2,16 +2,11 @@
 
 namespace Tests\Feature\Endpoints\Customers;
 
-use App\Models\Role;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use Tests\Endpoints\ResourceTestCase;
 
-class CreateCustomersTest extends TestCase
+class StoreCustomersTest extends ResourceTestCase
 {
-    use RefreshDatabase;
-
     protected $validations = [
         [
             'payload' => [],
@@ -37,28 +32,16 @@ class CreateCustomersTest extends TestCase
             });
     }
 
-    public function testGuestsNotAllowed()
-    {
-        $this->postJson(
-            route('api.customers.store')
-        )
-            ->assertStatus(401);
-    }
-
     public function testCreatesCustomer()
     {
-        $user = User::factory()
-            ->forRole()
-            ->create();
-
         $this
-            ->actingAs($user)
+            ->callAuthenticated()
             ->postJson(
-            route('api.customers.store'),
-            [
-                'name' => 'Acme, Co.'
-            ]
-        )
+                $this->getUri(),
+                [
+                    'name' => 'Acme, Co.'
+                ]
+            )
             ->assertStatus(201)
             ->assertJson([
                 'data' => [
