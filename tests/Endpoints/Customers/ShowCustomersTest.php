@@ -3,32 +3,17 @@
 namespace Tests\Feature\Endpoints\Customers;
 
 use App\Models\Customer;
-use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use Tests\Endpoints\ResourceTestCase;
 
-class ShowCustomersTest extends TestCase
+class ShowCustomersTest extends ResourceTestCase
 {
-    public function testGuestsNotAllowed()
-    {
-        $this->getJson(
-            route('api.customers.show', 1)
-        )
-            ->assertStatus(401);
-    }
-
     public function testReturnsCustomerResource()
     {
-        $user = User::factory()
-            ->forRole()
-            ->create();
-
         $customer = Customer::factory()
             ->create();
 
-        $this->actingAs($user)
-            ->getJson(route('api.customers.show', $customer->id))
+        $this->callAuthenticated()
+            ->getJson($this->getUri($customer))
             ->assertStatus(200)
             ->assertJson([
                 'data' => [

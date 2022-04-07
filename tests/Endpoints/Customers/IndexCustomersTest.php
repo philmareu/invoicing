@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Tests\Endpoints\ResourceTestCase;
 use Tests\TestCase;
 
 class IndexCustomersTest extends TestCase
