@@ -2,27 +2,28 @@
 
 namespace Tests\Endpoints\Invoices;
 
+use Illuminate\Database\Eloquent\Model;
+use Tests\Endpoints\ListsResources;
 use Tests\Endpoints\ResourceTestCase;
 
 class IndexInvoicesTest extends ResourceTestCase
 {
-    public function testReturnsListOfResources()
-    {
-        $invoice = $this->createResource();
+    use ListsResources;
 
-        $this
-            ->callAuthenticated()
-            ->getJson(
-                $this->getUri()
-            )
-            ->assertStatus(200)
-            ->assertJson([
-                'data' => [
-                    [
-                        'id' => $invoice->id,
-                        'customer_id' => $invoice->customer_id
-                    ]
+    public function getStandardPayload(): array
+    {
+        return [];
+    }
+
+    public function getStandardResponse(Model $resource): array
+    {
+        return [
+            'data' => [
+                [
+                    'id' => $resource->id,
+                    'customer_id' => $resource->customer_id
                 ]
-            ]);
+            ]
+        ];
     }
 }

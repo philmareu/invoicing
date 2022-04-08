@@ -2,31 +2,30 @@
 
 namespace Tests\Endpoints\Customers;
 
-use App\Models\Customer;
+use Illuminate\Database\Eloquent\Model;
+use Tests\Endpoints\ListsResources;
 use Tests\Endpoints\ResourceTestCase;
 
 class IndexCustomersTest extends ResourceTestCase
 {
-    public function testReturnsListOfResources()
-    {
-        $customer = Customer::factory()
-            ->create([
-                'name' => 'Acme, Co.'
-            ]);
+    use ListsResources;
 
-        $this
-            ->callAuthenticated()
-            ->getJson(
-            $this->getUri()
-        )
-            ->assertStatus(200)
-            ->assertJson([
-                'data' => [
-                    [
-                        'id' => $customer->id,
-                        'name' => 'Acme, Co.'
-                    ]
+    public function getStandardPayload(): array
+    {
+        return [
+            'name' => 'Acme, Co.'
+        ];
+    }
+
+    public function getStandardResponse(Model $resource): array
+    {
+        return [
+            'data' => [
+                [
+                    'id' => $resource->id,
+                    'name' => 'Acme, Co.'
                 ]
-            ]);
+            ]
+        ];
     }
 }

@@ -64,10 +64,10 @@ abstract class ResourceTestCase extends TestCase
         return $this->resource = $this->parsedClassName()['resource'];
     }
 
-    public function createResource(): Model
+    public function createResource(array $attributes = []): Model
     {
         return $this->getResourceModel()::factory()
-            ->create();
+            ->create($attributes);
     }
 
     public function getGenericUri()
