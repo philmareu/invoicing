@@ -18,5 +18,12 @@ class DestroyCustomersTest extends ResourceTestCase
             ->assertJson([
                 'Customer deleted.'
             ]);
+
+        $this->assertDatabaseMissing(
+            'customers',
+            [
+                'id' => $customer->id
+            ]
+        );
     }
 }
