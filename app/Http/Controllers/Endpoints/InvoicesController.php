@@ -79,6 +79,6 @@ class InvoicesController extends Controller
     {
         $invoice->delete();
 
-        return response()->json(['Invoice deleted.']);
+        return response()->json(['Deleted.']);
     }
 }
