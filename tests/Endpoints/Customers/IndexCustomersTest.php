@@ -9,7 +9,7 @@ class IndexCustomersTest extends ResourceTestCase
 {
     public function testReturnsListOfResources()
     {
-        Customer::factory()
+        $customer = Customer::factory()
             ->create([
                 'name' => 'Acme, Co.'
             ]);
@@ -23,6 +23,7 @@ class IndexCustomersTest extends ResourceTestCase
             ->assertJson([
                 'data' => [
                     [
+                        'id' => $customer->id,
                         'name' => 'Acme, Co.'
                     ]
                 ]
