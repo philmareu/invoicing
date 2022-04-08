@@ -2,22 +2,21 @@
 
 namespace Tests\Endpoints\Invoices;
 
+use Illuminate\Database\Eloquent\Model;
 use Tests\Endpoints\ResourceTestCase;
+use Tests\Endpoints\ShowsResource;
 
 class ShowInvoicesTest extends ResourceTestCase
 {
-    public function testReturnsInvoiceResource()
-    {
-        $invoice = $this->createResource();
+    use ShowsResource;
 
-        $this->callAuthenticated()
-            ->getJson($this->getUri($invoice))
-            ->assertStatus(200)
-            ->assertJson([
-                'data' => [
-                    'id' => $invoice->id,
-                    'customer_id' => $invoice->customer_id
-                ]
-            ]);
+    public function getStandardResponse(Model $resource): array
+    {
+        return [
+            'data' => [
+                'id' => $resource->id,
+                'customer_id' => $resource->customer_id
+            ]
+        ];
     }
 }

@@ -2,24 +2,21 @@
 
 namespace Tests\Endpoints\Customers;
 
-use App\Models\Customer;
+use Illuminate\Database\Eloquent\Model;
 use Tests\Endpoints\ResourceTestCase;
+use Tests\Endpoints\ShowsResource;
 
 class ShowCustomersTest extends ResourceTestCase
 {
-    public function testReturnsCustomerResource()
-    {
-        $customer = Customer::factory()
-            ->create();
+    use ShowsResource;
 
-        $this->callAuthenticated()
-            ->getJson($this->getUri($customer))
-            ->assertStatus(200)
-            ->assertJson([
-                'data' => [
-                    'id' => $customer->id,
-                    'name' => $customer->name
-                ]
-            ]);
+    public function getStandardResponse(Model $resource): array
+    {
+        return [
+            'data' => [
+                'id' => $resource->id,
+                'name' => $resource->name
+            ]
+        ];
     }
 }
