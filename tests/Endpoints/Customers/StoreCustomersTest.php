@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Endpoints\Customers;
+namespace Tests\Endpoints\Customers;
 
 use Tests\Endpoints\HasValidations;
 use Tests\Endpoints\ResourceTestCase;
