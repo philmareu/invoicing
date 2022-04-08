@@ -10,6 +10,11 @@ class ShowInvoicesTest extends ResourceTestCase
 {
     use ShowsResource;
 
+    public function getStandardAttributes(): array
+    {
+        return [];
+    }
+
     public function getStandardResponse(Model $resource): array
     {
         return [

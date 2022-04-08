@@ -6,11 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 trait ShowsResource
 {
+    abstract public function getStandardAttributes(): array;
+
     abstract public function getStandardResponse(Model $resource): array;
 
     public function testReturnsInvoiceResource()
     {
-        $resource = $this->createResource();
+        $resource = $this->createResource(
+            $this->getStandardAttributes()
+        );
 
         $this->callAuthenticated()
             ->getJson($this->getUri($resource))
