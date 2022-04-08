@@ -52,7 +52,7 @@ abstract class ResourceTestCase extends TestCase
             return $this->action;
         }
 
-        return $this->action = $this->parsedClassName()['action'];
+        return $this->action = $this->getParsedClassName()['action'];
     }
 
     public function getResource()
@@ -61,7 +61,7 @@ abstract class ResourceTestCase extends TestCase
             return $this->resource;
         }
 
-        return $this->resource = $this->parsedClassName()['resource'];
+        return $this->resource = $this->getParsedClassName()['resource'];
     }
 
     public function createResource(array $attributes = []): Model
@@ -109,7 +109,7 @@ abstract class ResourceTestCase extends TestCase
             ));
     }
 
-    private function parsedClassName()
+    private function getParsedClassName()
     {
         list($action, $resource) = explode(
             '_',
