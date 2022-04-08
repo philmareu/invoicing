@@ -56,14 +56,16 @@ class CustomersController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return Customer
+     * @return CustomerResource
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $customer
             ->update($request->validated());
 
-        return $customer;
+        return CustomerResource::make(
+            $customer
+        );
     }
 
     /**
