@@ -3,7 +3,6 @@
 namespace Tests\Endpoints\Invoices;
 
 use App\Models\Customer;
-use App\Models\Invoice;
 use Tests\Endpoints\HasValidations;
 use Tests\Endpoints\ResourceTestCase;
 
@@ -26,8 +25,7 @@ class UpdateInvoicesTest extends ResourceTestCase
         $customer = Customer::factory()
             ->create();
 
-        $invoice = Invoice::factory()
-            ->create();
+        $invoice = $this->createResource();
 
         $this
             ->callAuthenticated()

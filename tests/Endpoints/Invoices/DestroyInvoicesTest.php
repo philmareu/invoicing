@@ -2,15 +2,13 @@
 
 namespace Tests\Endpoints\Invoices;
 
-use App\Models\Invoice;
 use Tests\Endpoints\ResourceTestCase;
 
 class DestroyInvoicesTest extends ResourceTestCase
 {
     public function testDestroysInvoiceResource()
     {
-        $invoice = Invoice::factory()
-            ->create();
+        $invoice = $this->createResource();
 
         $this->callAuthenticated()
             ->deleteJson($this->getUri($invoice))

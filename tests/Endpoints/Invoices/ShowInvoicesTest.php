@@ -2,15 +2,13 @@
 
 namespace Tests\Endpoints\Invoices;
 
-use App\Models\Invoice;
 use Tests\Endpoints\ResourceTestCase;
 
 class ShowInvoicesTest extends ResourceTestCase
 {
     public function testReturnsInvoiceResource()
     {
-        $invoice = Invoice::factory()
-            ->create();
+        $invoice = $this->createResource();
 
         $this->callAuthenticated()
             ->getJson($this->getUri($invoice))
