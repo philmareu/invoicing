@@ -10,7 +10,7 @@ class IndexInvoicesTest extends ResourceTestCase
 {
     use ListsResources;
 
-    public function getStandardPayload(): array
+    public function getStandardAttributes(): array
     {
         return [];
     }
