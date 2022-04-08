@@ -17,6 +17,7 @@ class ShowCustomersTest extends ResourceTestCase
             ->assertStatus(200)
             ->assertJson([
                 'data' => [
+                    'id' => $customer->id,
                     'name' => $customer->name
                 ]
             ]);
