@@ -37,7 +37,9 @@ class UpdateCustomersTest extends ResourceTestCase
             )
             ->assertStatus(200)
             ->assertJson([
-                'name' => 'Acme, Co.'
+                'data' => [
+                    'name' => 'Acme, Co.'
+                ]
             ]);
 
         $this->assertDatabaseHas(
