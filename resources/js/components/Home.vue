@@ -1,6 +1,10 @@
 <template>
   <div>
-      <p>Home Component</p>
+      <ul>
+          <li><a href="/customers">Customers</a></li>
+          <li><a href="/invoices">Invoices</a></li>
+          <li><a href="/work">Work</a></li>
+      </ul>
   </div>
 </template>
 

@@ -14,6 +14,7 @@ import Vue from 'vue'
 
 Vue.component('home', require('./components/Home.vue').default);
 Vue.component('install', require('./components/Install.vue').default);
+Vue.component('list-customers', require('./components/Customers/Index.vue').default);
 
 const app = new Vue({
     el: '#app',
