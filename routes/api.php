@@ -16,5 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::resources([
     'customers' => \App\Http\Controllers\Endpoints\CustomersController::class,
-    'invoices' => \App\Http\Controllers\Endpoints\InvoicesController::class
+    'invoices' => \App\Http\Controllers\Endpoints\InvoicesController::class,
+    'work' => \App\Http\Controllers\Endpoints\WorkController::class
 ]);
