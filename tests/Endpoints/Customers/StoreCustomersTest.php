@@ -19,7 +19,7 @@ class StoreCustomersTest extends ResourceTestCase
         ];
     }
 
-    public function testCreatesCustomer()
+    public function testStoresResource()
     {
         $this
             ->callAuthenticated()

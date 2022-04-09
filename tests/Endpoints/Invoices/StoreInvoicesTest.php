@@ -20,7 +20,7 @@ class StoreInvoicesTest extends ResourceTestCase
         ];
     }
 
-    public function testCreatesInvoice()
+    public function testStoresResource()
     {
         $customer = Customer::factory()
             ->create();

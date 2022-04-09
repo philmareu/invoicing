@@ -20,7 +20,7 @@ class UpdateCustomersTest extends ResourceTestCase
         ];
     }
 
-    public function testUpdatesCustomer()
+    public function testUpdatesResource()
     {
         $customer = Customer::factory()
             ->create([
