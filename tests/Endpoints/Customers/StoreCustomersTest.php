@@ -36,11 +36,7 @@ class StoreCustomersTest extends ResourceTestCase
                 ]
             ]);
 
-        $this->assertDatabaseHas(
-            'customers',
-            [
-                'name' => 'Acme, Co.'
-            ]
-        );
+        // check using endpoint
+        // $this->getJson('')->assertJsonFragment();
     }
 }

@@ -22,10 +22,8 @@ class UpdateCustomersTest extends ResourceTestCase
 
     public function testUpdatesResource()
     {
-        $customer = Customer::factory()
-            ->create([
-                'name' => 'Harvest Co.'
-            ]);
+        // create with endpoint
+        // e.x $customer = $this->postJson('', []);
 
         $this
             ->callAuthenticated()
@@ -42,12 +40,7 @@ class UpdateCustomersTest extends ResourceTestCase
                 ]
             ]);
 
-        $this->assertDatabaseHas(
-            'customers',
-            [
-                'id' => $customer->id,
-                'name' => 'Acme, Co.'
-            ]
-        );
+        // check using endpoint
+        // $this->getJson('')->assertJsonFragment();
     }
 }
